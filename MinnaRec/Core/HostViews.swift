@@ -27,7 +27,7 @@ struct MenuView: View {
     var body: some View {
         VStack(spacing: 0) {
             HStack(spacing: 16) {
-                Text(L.t("みんなでレク", "Minna Rec"))
+                Text(L.t("シニアーズゲーム", "Seniors Games"))
                     .font(.round(34, .heavy))
                     .foregroundStyle(Theme.accent)
                 DisplayBadge()

@@ -74,7 +74,7 @@ enum GameID: String, CaseIterable, Identifiable {
         switch self {
         case .dougu: return L.t("なつかし道具 3つのヒント", "Old Things: 3 Hints")
         case .nenpyo: return L.t("この年なにがあった？", "What Happened That Year?")
-        case .shouka: return L.t("唱歌イントロ当て", "Name That Song")
+        case .shouka: return L.t("なつかしの歌イントロ当て", "Name That Song")
         case .gyouji: return L.t("季節の行事クイズ", "Seasons & Festivals")
         case .kotowaza: return L.t("ことわざ穴うめ", "Finish the Proverb")
         case .kanji: return L.t("漢字の読み", "Read the Kanji")

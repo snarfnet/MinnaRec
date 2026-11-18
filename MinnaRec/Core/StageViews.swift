@@ -58,8 +58,8 @@ struct WelcomeStage: View {
         VStack(spacing: 40) {
             Text("🎵 🎲 🎡 👏 🎱")
                 .font(.system(size: 110))
-            Text(L.t("みんなでレク", "Minna Rec"))
-                .font(.big(170))
+            Text(L.t("シニアーズゲーム", "Seniors Games"))
+                .font(.big(150))
                 .foregroundStyle(Theme.accent)
             Text(L.t("まもなく はじまります", "We'll begin shortly"))
                 .font(.big(64))
