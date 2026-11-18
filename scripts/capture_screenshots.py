@@ -24,6 +24,8 @@ IPHONE_SIZE = (2796, 1290)
 IPAD_SIZE = (2732, 2048)
 
 SCREENS = [str(i) for i in range(8)]  # see ScreenshotMode.plan
+# シミュレーターでの写り方が機種で逆になる（CI の画像で確かめた向き）
+TURN = {"iphone": 90, "ipad": -90}
 LOCALE = {"ja": "ja_JP", "en": "en_US"}
 
 
@@ -54,7 +56,7 @@ def capture(udid, screen, lang, out):
     sh("xcrun", "simctl", "io", udid, "screenshot", out)
 
 
-def normalize(path, size):
+def normalize(path, size, turn):
     im = Image.open(path).convert("RGB")
     # 縦向きのシミュレーターでは、横向き専用のアプリが縮んで黒い余白つきで写る。
     # アプリの写っている所だけを切り出し、横向きに戻す（描き足しはしない）
@@ -62,7 +64,7 @@ def normalize(path, size):
     if box:
         im = im.crop(box)
     if im.width < im.height:
-        im = im.rotate(-90, expand=True)
+        im = im.rotate(turn, expand=True)
     if im.size != size:
         im = im.resize(size, Image.LANCZOS)
     im.save(path)
@@ -80,7 +82,7 @@ def run_device(dev, kind, size):
         for i, screen in enumerate(SCREENS, 1):
             out = os.path.join(folder, f"{i}.png")
             capture(udid, screen, lang, out)
-            normalize(out, size)
+            normalize(out, size, TURN[kind])
             print("saved", out, flush=True)
     # 起動のようすを残す（白い画面や落ちたときの手がかり）
     log = subprocess.run(["xcrun", "simctl", "spawn", udid, "log", "show", "--last", "3m", "--style", "compact",
