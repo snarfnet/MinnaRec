@@ -83,10 +83,10 @@ final class RouletteGame: GameEngine {
 
     override var usesTeams: Bool { false }
 
-    fileprivate var topics: [RouletteTopic] { set.topics }
+    fileprivate var topics: [RouletteTopic] { self.set.topics }
     var count: Int { topics.count }
     var segment: Double { 360.0 / Double(count) }
-    var setTitle: String { set.title }
+    var setTitle: String { self.set.title }
 
     override func stop() {
         token += 1
