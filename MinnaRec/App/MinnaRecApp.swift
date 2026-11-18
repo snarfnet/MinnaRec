@@ -26,20 +26,9 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
         application.isIdleTimerDisabled = true
         return true
     }
-
-    // プロジェクター・テレビ（HDMI / AirPlay）がつながったら、そちらには大きい画面だけを出す
-    func application(_ application: UIApplication,
-                     configurationForConnecting connectingSceneSession: UISceneSession,
-                     options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-        if connectingSceneSession.role == .windowExternalDisplayNonInteractive {
-            let config = UISceneConfiguration(name: "External", sessionRole: connectingSceneSession.role)
-            config.delegateClass = ExternalSceneDelegate.self
-            return config
-        }
-        return connectingSceneSession.configuration
-    }
 }
 
+/// プロジェクター・テレビ（HDMI / AirPlay）がつながると、Info.plist の設定でこれが呼ばれ、大きい画面にはゲームだけを出す
 final class ExternalSceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
 

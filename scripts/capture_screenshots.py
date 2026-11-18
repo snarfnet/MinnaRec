@@ -77,6 +77,12 @@ def run_device(dev, kind, size):
             capture(udid, screen, lang, out)
             normalize(out, size)
             print("saved", out, flush=True)
+    # 起動のようすを残す（白い画面や落ちたときの手がかり）
+    log = subprocess.run(["xcrun", "simctl", "spawn", udid, "log", "show", "--last", "3m", "--style", "compact",
+                          "--predicate", 'process == "MinnaRec"'], capture_output=True, text=True).stdout
+    os.makedirs("shots", exist_ok=True)
+    open(os.path.join("shots", f"log_{kind}.txt"), "w").write(log[-200000:])
+    subprocess.run("cp ~/Library/Logs/DiagnosticReports/MinnaRec* shots/ 2>/dev/null", shell=True)
     subprocess.run(["xcrun", "simctl", "shutdown", udid], capture_output=True)
 
 
