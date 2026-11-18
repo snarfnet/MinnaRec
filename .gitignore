@@ -1,0 +1,7 @@
+build/
+*.xcodeproj/
+shots/
+.DS_Store
+.omc/
+**/.omc/
+ArtSource/icon_log.txt
