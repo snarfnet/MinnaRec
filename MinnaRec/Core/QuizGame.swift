@@ -130,8 +130,9 @@ final class QuizGame: GameEngine {
         revealed = true
         if mode == .zoom { zoomStep = QuizGame.zoomScales.count - 1 }
         Sfx.fanfare()
+        let at = index
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) { [weak self] in
-            guard self?.revealed == true else { return }
+            guard let self, self.revealed, self.index == at, !self.finished else { return }
             Speech.say(L.t("答えは、", "The answer is ") + c.answer)
         }
     }

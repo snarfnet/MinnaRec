@@ -227,11 +227,11 @@ struct RouletteStage: View {
         return VStack(spacing: 0) {
             Text(topic.emoji).font(.system(size: 46))
             Text(topic.short)
-                .font(.big(22))
+                .font(.big(32))
                 .foregroundStyle(.white)
                 .lineLimit(1)
-                .minimumScaleFactor(0.5)
-                .frame(width: 130)
+                .minimumScaleFactor(0.75)
+                .frame(width: 150)
         }
         .offset(y: -size * 0.33)
         .rotationEffect(.degrees(mid))

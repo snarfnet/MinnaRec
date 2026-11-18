@@ -79,7 +79,7 @@ enum GameID: String, CaseIterable, Identifiable {
         case .kotowaza: return L.t("ことわざ穴うめ", "Finish the Proverb")
         case .kanji: return L.t("漢字の読み", "Read the Kanji")
         case .meibutsu: return L.t("ご当地名物当て", "Famous Local Foods")
-        case .shiritori: return L.t("しりとり爆弾", "Word Bomb")
+        case .shiritori: return L.t("お題ばくだん", "Word Bomb")
         case .machigai: return L.t("まちがい探し", "Spot the Difference")
         case .silhouette: return L.t("シルエット当て", "Silhouette Quiz")
         case .kioku: return L.t("覚えてね！", "Remember This!")

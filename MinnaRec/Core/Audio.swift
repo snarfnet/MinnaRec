@@ -71,10 +71,20 @@ final class Synth {
         engine.attach(effects)
         engine.connect(music, to: engine.mainMixerNode, format: format)
         engine.connect(effects, to: engine.mainMixerNode, format: format)
+        // HDMI などで音の出口が変わるとエンジンが止まるので、つなぎ直して再開する
+        NotificationCenter.default.addObserver(forName: .AVAudioEngineConfigurationChange, object: engine, queue: .main) { [weak self] _ in
+            guard let self else { return }
+            self.engine.connect(self.music, to: self.engine.mainMixerNode, format: self.format)
+            self.engine.connect(self.effects, to: self.engine.mainMixerNode, format: self.format)
+            try? self.engine.start()
+        }
     }
 
     private func ensureRunning() {
-        if !engine.isRunning { try? engine.start() }
+        if !engine.isRunning {
+            try? AVAudioSession.sharedInstance().setActive(true)
+            try? engine.start()
+        }
     }
 
     /// 曲を鳴らす。終わったら done を main で呼ぶ

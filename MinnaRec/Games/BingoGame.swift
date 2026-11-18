@@ -137,9 +137,11 @@ struct BingoStage: View {
                 .foregroundStyle(Theme.ink.opacity(0.35))
         } else if let n = g.last {
             VStack(spacing: -20) {
-                Text(BingoGame.letter(n))
-                    .font(.big(90))
-                    .foregroundStyle(Theme.accent)
+                if !L.isJa {
+                    Text(BingoGame.letter(n))
+                        .font(.big(90))
+                        .foregroundStyle(Theme.accent)
+                }
                 Text("\(n)")
                     .font(.big(240))
                     .foregroundStyle(Theme.ink)
@@ -180,7 +182,7 @@ struct BingoStage: View {
         let hit = g.drawn.contains(n)
         let isLast = g.last == n && !g.rolling
         return Text("\(n)")
-            .font(.big(26))
+            .font(.big(32))
             .foregroundStyle(hit ? .white : Theme.ink.opacity(0.35))
             .frame(width: 48, height: 58)
             .background(RoundedRectangle(cornerRadius: 10).fill(isLast ? Theme.accent : (hit ? Theme.blue : Theme.bg)))

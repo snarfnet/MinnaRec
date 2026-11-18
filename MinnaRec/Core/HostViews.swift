@@ -239,6 +239,7 @@ struct HostPanel: View {
                     } else {
                         engine.controls()
                         HostButton(title: L.t("遊び方にもどる", "Show rules again"), symbol: "info.circle", color: Theme.hostCard) {
+                            engine.stop()
                             engine.showIntro = true
                         }
                     }

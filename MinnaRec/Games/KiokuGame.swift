@@ -127,7 +127,7 @@ final class KiokuGame: GameEngine {
         switch kind {
         case .missing: return L.t("なかったのはどれ？", "Which one was NOT there?")
         case .count: return L.t("絵はいくつありましたか？", "How many pictures were there?")
-        case .yesno: return L.t("「\(target?.name ?? "")」はありましたか？", "Was there a \(target?.name ?? "")?")
+        case .yesno: return L.t("「\(target?.name ?? "")」はありましたか？", "Did you see the \(target?.name ?? "")?")
         }
     }
 
@@ -183,7 +183,7 @@ final class KiokuGame: GameEngine {
         Item(emoji: "🚂", ja: "汽車", en: "steam train"),
         Item(emoji: "🎏", ja: "こいのぼり", en: "carp streamer"),
         Item(emoji: "🥒", ja: "きゅうり", en: "cucumber"),
-        Item(emoji: "🌂", ja: "日がさ", en: "parasol"),
+        Item(emoji: "🌽", ja: "とうもろこし", en: "corn"),
     ]
 }
 

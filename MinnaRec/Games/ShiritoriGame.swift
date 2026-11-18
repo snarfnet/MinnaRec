@@ -1,6 +1,6 @@
 import SwiftUI
 
-/// しりとり爆弾：お題に合うことばを言って次の人へ回す。いつ爆発するかはわからない
+/// お題ばくだん：お題に合うことばを言って次の人へ回す。いつ爆発するかはわからない
 final class ShiritoriGame: GameEngine {
     enum Phase { case ready, burning, exploded }
 

@@ -61,6 +61,8 @@ final class SugorokuGame: GameEngine {
         restart()
     }
 
+    override var usesTeams: Bool { false }
+
     var teams: [Team] { Session.shared.teams }
     var busy: Bool { rolling || moving }
     var allDone: Bool { finishOrder.count >= teams.count }
@@ -180,6 +182,7 @@ final class SugorokuGame: GameEngine {
             let place = finishOrder.count
             Speech.say(L.t("\(teams[turn].name)、ゴール！\(place)着です", "\(teams[turn].name) team reaches the goal! Place \(place)"))
         case .advance:
+            moving = true
             Sfx.ding()
             Speech.say(sq.text)
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.6) { [weak self] in
