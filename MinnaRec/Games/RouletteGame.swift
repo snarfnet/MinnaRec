@@ -224,16 +224,10 @@ struct RouletteStage: View {
     private func label(_ i: Int) -> some View {
         let mid = (Double(i) + 0.5) * g.segment
         let topic = g.topics[i]
-        return VStack(spacing: 0) {
-            Text(topic.emoji).font(.system(size: 46))
-            Text(topic.short)
-                .font(.big(32))
-                .foregroundStyle(.white)
-                .lineLimit(1)
-                .minimumScaleFactor(0.75)
-                .frame(width: 150)
-        }
-        .offset(y: -size * 0.33)
+        // 円盤の上は絵だけ。字は小さく重なって読めないので、となりのカードに大きく出す
+        return Text(topic.emoji)
+            .font(.system(size: 64))
+        .offset(y: -size * 0.35)
         .rotationEffect(.degrees(mid))
     }
 

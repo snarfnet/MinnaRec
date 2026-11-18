@@ -56,8 +56,13 @@ def capture(udid, screen, lang, out):
 
 def normalize(path, size):
     im = Image.open(path).convert("RGB")
+    # 縦向きのシミュレーターでは、横向き専用のアプリが縮んで黒い余白つきで写る。
+    # アプリの写っている所だけを切り出し、横向きに戻す（描き足しはしない）
+    box = im.convert("L").point(lambda v: 255 if v > 8 else 0).getbbox()
+    if box:
+        im = im.crop(box)
     if im.width < im.height:
-        im = im.rotate(90, expand=True)
+        im = im.rotate(-90, expand=True)
     if im.size != size:
         im = im.resize(size, Image.LANCZOS)
     im.save(path)
